@@ -1,0 +1,121 @@
+.gridContainer {
+  height: 100%;
+  background-color: rgba(33, 49, 51, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: transparent;
+}
+
+/* Header styles */
+.tableHeader {
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 500;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: left;
+  background-color: var(--header-bg);
+}
+
+.tableCell {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: left;
+  color: #ffffff;
+}
+
+/* Row styles */
+.row {
+  cursor: pointer;
+}
+
+.row:hover {
+  background-color: rgba(25, 118, 210, 0.04);
+  cursor: pointer;
+}
+
+.row.selected {
+  background-color: rgba(25, 118, 210, 0.08) !important;
+}
+
+.row.selected:hover {
+  background-color: rgba(25, 118, 210, 0.12) !important;
+}
+
+.iconButton {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.row:hover .iconButton {
+  opacity: 1;
+}
+
+.iconButton:hover {
+  color: #90caf9;
+}
+
+.pagination {
+  padding: 12px 16px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: var(--header-bg);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Dark mode styles */
+:global(.dark-mode) .row:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+:global(.dark-mode) .row.selected {
+  background-color: rgba(144, 202, 249, 0.16) !important;
+}
+
+:global(.dark-mode) .row.selected:hover {
+  background-color: rgba(144, 202, 249, 0.24) !important;
+}
+
+/* Light mode overrides */
+:global(.light) .gridContainer {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+:global(.light) .tableHeader,
+:global(.light) .pagination {
+  background-color: rgb(245, 245, 245);
+  color: rgba(0, 0, 0, 0.87);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+:global(.light) .tableCell {
+  color: rgba(0, 0, 0, 0.87);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+:global(.light) .row:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+:global(.light) .iconButton {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+:global(.light) .iconButton:hover {
+  color: #1976d2;
+}
+

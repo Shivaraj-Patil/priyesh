@@ -1,0 +1,166 @@
+.graphContainer {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  position: relative;
+  overflow: hidden;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.graphSvg {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.link {
+  fill: none;
+  stroke-linecap: round;
+  pointer-events: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.link.selected {
+  stroke-width: 2px;
+  stroke: rgba(100, 181, 246, 0.8);
+  filter: drop-shadow(0 0 3px rgba(255, 171, 0, 0.3));
+}
+
+.nodeContainer {
+  pointer-events: all;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+/* Root node styling - always visible */
+.nodeContainer:first-child > div {
+  border: 2px solid rgba(100, 181, 246, 0.8) !important;
+  background: linear-gradient(135deg,
+    rgba(100, 181, 246, 0.15) 0%,
+    rgba(100, 181, 246, 0.05) 100%);
+  box-shadow: 0 0 12px rgba(100, 181, 246, 0.2);
+  z-index: 8;
+}
+
+.nodeContainer.selected > div {
+  transform: scale(1.05);
+  z-index: 10;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 171, 0, 0.15) 0%,
+    rgba(255, 171, 0, 0.05) 100%
+  );
+  border: 2px solid rgba(255, 171, 0, 0.8);
+  box-shadow: 
+    0 0 0 1px rgba(255, 171, 0, 0.3),
+    0 0 15px rgba(255, 171, 0, 0.2);
+}
+
+.nodeContainer.parent > div,
+.nodeContainer.child > div {
+  transform: scale(1.02);
+  z-index: 5;
+  background: linear-gradient(
+    135deg,
+    rgba(100, 181, 246, 0.12) 0%,
+    rgba(100, 181, 246, 0.04) 100%
+  );
+  border: 1px solid rgba(100, 181, 246, 0.6);
+  box-shadow: 
+    0 0 0 1px rgba(100, 181, 246, 0.2),
+    0 0 10px rgba(100, 181, 246, 0.15);
+}
+
+.zoomControls {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  z-index: 100;
+  background-color: rgba(33, 49, 51, 0.4);
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 18px;
+  color: white;
+  background-color: rgba(144, 202, 249, 0.9);
+  transition: all 0.3s ease;
+}
+
+/* Light Mode Overrides */
+:global(.light-mode) {
+  .link {
+    stroke: rgba(0, 0, 0, 0.15);
+  }
+
+  .nodeContainer.selected > div {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 171, 0, 0.12) 0%,
+      rgba(255, 171, 0, 0.04) 100%
+    );
+    border: 2px solid rgba(255, 171, 0, 0.7);
+  }
+
+  .nodeContainer.parent > div,
+  .nodeContainer.child > div {
+    background: linear-gradient(
+      135deg,
+      rgba(25, 118, 210, 0.08) 0%,
+      rgba(25, 118, 210, 0.02) 100%
+    );
+    border: 1px solid rgba(25, 118, 210, 0.5);
+  }
+
+  .zoomControls {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Dark Mode Overrides */
+:global(.dark-mode) {
+  .link {
+    stroke: rgba(255, 255, 255, 0.15);
+  }
+
+  .nodeContainer.selected > div {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 171, 0, 0.18) 0%,
+      rgba(255, 171, 0, 0.06) 100%
+    );
+    border: 2px solid rgba(255, 171, 0, 0.8);
+  }
+
+  .nodeContainer.parent > div,
+  .nodeContainer.child > div {
+    background: linear-gradient(
+      135deg,
+      rgba(100, 181, 246, 0.15) 0%,
+      rgba(100, 181, 246, 0.05) 100%
+    );
+    border: 1px solid rgba(100, 181, 246, 0.6);
+  }
+
+  .zoomControls {
+    background-color: rgba(33, 49, 51, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
